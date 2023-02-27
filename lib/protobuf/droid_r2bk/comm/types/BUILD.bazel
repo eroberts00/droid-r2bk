@@ -1,0 +1,48 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@build_stack_rules_proto//rules/cc:proto_cc_library.bzl", "proto_cc_library")
+load("@build_stack_rules_proto//rules/py:proto_py_library.bzl", "proto_py_library")
+load("@build_stack_rules_proto//rules:proto_compile.bzl", "proto_compile")
+
+proto_library(
+    name = "droid_r2bk_comm_types_proto",
+    srcs = ["types.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_cc_library(
+    name = "droid_r2bk_comm_types_cc_library",
+    srcs = ["types.pb.cc"],
+    hdrs = ["types.pb.h"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:protobuf"],
+)
+
+proto_compile(
+    name = "droid_r2bk_comm_types_cpp_compile",
+    outputs = [
+        "types.pb.cc",
+        "types.pb.h",
+    ],
+    plugins = ["@build_stack_rules_proto//plugin/builtin:cpp"],
+    proto = "droid_r2bk_comm_types_proto",
+)
+
+proto_compile(
+    name = "droid_r2bk_comm_types_python_compile",
+    outputs = [
+        "types_pb2.py",
+        "types_pb2.pyi",
+    ],
+    plugins = [
+        "@build_stack_rules_proto//plugin/builtin:pyi",
+        "@build_stack_rules_proto//plugin/builtin:python",
+    ],
+    proto = "droid_r2bk_comm_types_proto",
+)
+
+proto_py_library(
+    name = "droid_r2bk_comm_types_py_library",
+    srcs = ["types_pb2.py"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:protobuf_python"],
+)

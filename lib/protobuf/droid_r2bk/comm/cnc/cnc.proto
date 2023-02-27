@@ -1,0 +1,50 @@
+// Copyright (c) 2023, Elijah Roberts
+// BSD 3-Clause License
+
+/**
+ * Interface for droid communication and control.
+ */
+
+syntax = "proto3";
+import "lib/protobuf/droid_r2bk/comm/types/types.proto";
+import "lib/protobuf/droid_r2bk/comm/auth/auth.proto";
+
+package droid_r2bk.comm.cnc;
+
+
+/*
+ * Current status of the droid.
+ */
+message GetInfoRequest {
+  droid_r2bk.comm.auth.AuthorizationToken authorization = 1;
+}
+
+message GetInfoResponse {
+  droid_r2bk.comm.types.Timestamp time = 1;
+  uint32 type = 2;
+  uint32 mfg = 3;
+  uint32 model = 4;
+  uint32 protocol_major_version = 5;
+  uint32 protocol_minor_version = 6;
+  bytes responder_identity = 7;
+  string name = 8;
+}
+
+
+/*
+ * Current status of the droid.
+ */
+enum Status {
+  NONE = 0;
+  QUERY_ALL = 1;
+  MODIFY_ALL = 2;
+}
+
+message GetStatusRequest {
+  droid_r2bk.comm.auth.AuthorizationToken authorization = 1;
+}
+
+message GetStatusResponse {
+  droid_r2bk.comm.types.Timestamp time = 1;
+  Status status = 2;
+}

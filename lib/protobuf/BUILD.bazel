@@ -1,0 +1,28 @@
+### Core ###
+
+# gazelle:proto_rule proto_compile implementation stackb:rules_proto:proto_compile
+
+### C++ ###
+
+# gazelle:proto_plugin cpp implementation builtin:cpp
+# gazelle:proto_rule proto_cc_library implementation stackb:rules_proto:proto_cc_library
+# gazelle:proto_rule proto_cc_library deps @com_google_protobuf//:protobuf
+# gazelle:proto_rule proto_cc_library visibility //visibility:public
+# gazelle:proto_language cpp plugin cpp
+# gazelle:proto_language cpp rule proto_compile
+# gazelle:proto_language cpp rule proto_cc_library
+
+### Python implementation files ###
+
+# gazelle:proto_plugin python implementation builtin:python
+# gazelle:proto_rule proto_python_library implementation stackb:rules_proto:proto_py_library
+# gazelle:proto_rule proto_python_library deps @com_google_protobuf//:protobuf_python
+# gazelle:proto_rule proto_python_library visibility //visibility:public
+# gazelle:proto_language python plugin python
+# gazelle:proto_language python rule proto_compile
+# gazelle:proto_language python rule proto_python_library
+
+### Python interface stubs ###
+
+# gazelle:proto_plugin pyi implementation builtin:pyi
+# gazelle:proto_language python plugin pyi

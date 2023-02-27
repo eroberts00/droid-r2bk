@@ -1,0 +1,43 @@
+// Copyright (c) 2023, Elijah Roberts
+// BSD 3-Clause License
+
+/**
+ * Interface for droid discovery.
+ */
+
+syntax = "proto3";
+import "lib/protobuf/droid_r2bk/comm/types/types.proto";
+
+package droid_r2bk.comm.discovery;
+
+message DiscoveryRequest {
+  uint32 requestor_type = 1;
+  uint32 requestor_mfg = 2;
+  uint32 requestor_model = 3;
+  uint32 requestor_address = 4;
+  uint32 requestor_port = 5;
+  bytes requestor_identity = 6;
+  bytes requestor_verification = 7;
+  uint32 requestor_major_version = 8;
+  uint32 requestor_minor_version = 9;
+  uint32 discover_type = 20;
+  uint32 discover_mfg = 21;
+  uint32 discover_model = 22;
+  bytes discover_uuid = 23;
+  uint32 discover_major_version = 24;
+  droid_r2bk.comm.types.Timestamp request_time = 30;
+}
+
+message DiscoveryResponse {
+  uint32 responder_type = 1;
+  uint32 responder_mfg = 2;
+  uint32 responder_model = 3;
+  uint32 responder_address = 4;
+  uint32 responder_port = 5;
+  uint32 responder_major_version = 6;
+  uint32 responder_minor_version = 7;
+  bytes responder_identity = 8;
+  bytes responder_verification = 9;
+  droid_r2bk.comm.types.Timestamp request_time = 30;
+  droid_r2bk.comm.types.Timestamp response_time = 31;
+}

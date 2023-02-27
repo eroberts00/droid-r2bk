@@ -1,5 +1,10 @@
+# Custom
 .DS_Store
 .idea
+bazel-bin
+bazel-droid-r2bk
+bazel-out
+bazel-testlogs
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

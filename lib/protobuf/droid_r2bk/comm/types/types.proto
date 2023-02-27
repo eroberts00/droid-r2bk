@@ -1,0 +1,15 @@
+// Copyright (c) 2023, Elijah Roberts
+// BSD 3-Clause License
+
+/**
+ * common types for droid communications.
+ */
+
+syntax = "proto3";
+
+package droid_r2bk.comm.types;
+
+message Timestamp {
+  int64 seconds = 1;
+  int32 nanos = 2;
+}

@@ -1,6 +1,24 @@
 # droid-r2bk
 Firmware, software, and hardware designs for R2BK droid toy
 
+## Build the project
+
+1. Run `gazelle` to update any dynamic bazel build files.
+   ```
+   bazel run //:gazelle -- lib/protobuf
+   ```
+
+1. Build the project using bazel.
+   ```
+   bazel build //...
+   ```
+
+1. Manually copy the generated python interface stubs back into the source tree to enable IDE integration.
+   ```
+   ROOT=`pwd` && pushd bazel-bin && find -L lib -name *.pyi -and -not -path "*runfiles*" -exec rsync -av {} ${ROOT}/{} \; && popd
+   ```
+
+
 ## Connect to Raspberry PI Pico via USB Serial from WSL2
 
 1. Install the `usbipd-win` USB/IP service: https://github.com/dorssel/usbipd-win
